@@ -1,0 +1,16 @@
+a porta esta aberta
+a casa esta fechada
+a janela esta aberta
+a gaveta esta fechada
+o cão esta sujo
+o gato esta limpo
+o patio esta sujo
+o balde esta limpo
+
+<S> ::= a <B>
+<B> ::= porta <C> | janela <C> | casa <D> | gaveta <D> |
+cão <E> | patio <E> | gato <F> | balde <F>
+<C> ::= esta aberta
+<D> ::= esta fechada 
+<E> ::= esta sujo
+<F> ::= esta limpo
