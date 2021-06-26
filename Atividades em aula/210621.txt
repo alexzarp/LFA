@@ -1,0 +1,6 @@
+L(G) = {x | x ∈ (a, b, c)* onde |x| é ímpar}
+
+S ::= aA
+A ::= aA | bB | cB | ε
+B ::= aA | bB | cB 
+
