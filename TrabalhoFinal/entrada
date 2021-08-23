@@ -1,10 +1,6 @@
 se
-senao
 entao
+senao
 
-<S> ::= a<B> | c<C> | d<C>
-<A> ::= b<C> | a<E>
-<B> ::= b<D> | c<C>| d<C>
-<C> ::= d<D> | ε
-<D> ::= b<B> | b<C>
-<E> ::= b<B> | c<A>
+<S> ::= a<A> | e<A> | i<A> | o<A> | u<A>
+<A> ::= a<A> | e<A> | i<A> | o<A> | u<A> | ε

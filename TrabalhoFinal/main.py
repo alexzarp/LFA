@@ -1,4 +1,5 @@
 from pattern import *
+import re
 
 arq = open("entrada", "r")
 arq = arq.readlines()
@@ -6,11 +7,13 @@ arq = arq.readlines()
 epsilon = 'ε'
 afnd = [['δ']]
 afd = []
-# contatos = {'Yan': '1234-5678'}
+
 # numeracao_minuscula = [("a", 0), ("b", 1), ('d', 2), ('e', 3), ('f', 4), ('g', 5), ('h', 6), ('i', 7), ('j', 8), ('k', 9), ('l', 10), ('m', 11), ('n', 12), ('o', 13), ('p', 14), ('q', 15), ('r', 16), ('s', 17), ('t', 18), ('u', 19), ('v', 20), ('w', 21), ('y', 22), ('k', 23), ('x', 24), ('z', 25)]
 # contatos = dict(numeracao_minuscula)
-    
-# print( ord('a'),chr(1+96))
+
+def print_table(vet):
+    for i in range(len(vet)):
+        print(vet[i])
 
 # encontra e coloca na tabela os tokens [a-z]
 for i in range (len(arq)):
@@ -20,10 +23,9 @@ for i in range (len(arq)):
             continue
         else:
             afnd[0].append(tokens[j])
-afnd[0].sort()
-afnd[0].insert(0, afnd[0][-1])
-afnd[0].pop(-1)
-# print(afnd)
+# afnd[0].sort()
+# afnd[0].insert(0, afnd[0][-1])
+# afnd[0].pop(-1)
 
 # encontra e coloca na tabela os tokens <[A-Z]>
 for i in range (len(arq)):
@@ -34,4 +36,8 @@ for i in range (len(arq)):
             afnd.append(['*' + tokens[0]])
         else:
             afnd.append([tokens[0]])
-print(afnd)
+
+
+# cont = len(afnd[0]) -1
+# for i in range (len(arq)):
+print_table(afnd)
