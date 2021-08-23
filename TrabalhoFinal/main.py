@@ -28,6 +28,10 @@ afnd[0].pop(-1)
 # encontra e coloca na tabela os tokens <[A-Z]>
 for i in range (len(arq)):
     tokens = re.findall('<[A-Z]>', arq[i])
+    ep = re.findall(epsilon, arq[i])
     if tokens != []:
-        afnd.append([tokens[0]])
+        if ep != []:
+            afnd.append(['*' + tokens[0]])
+        else:
+            afnd.append([tokens[0]])
 print(afnd)
