@@ -49,24 +49,37 @@ for i in range (len(arq)):
             afnd[0].append(tokens[j])
 simbolos = len(afnd[0])
 numero_estados = len(afnd[0]) -1
+for j in range(numero_estados):
+    afnd[1].append("-")
 
 for i in range(len(arq)):
     estado_atual = re.findall('<[A-Z]>', arq[i])
     for k in range(len(estado_atual)):
         estado_atual[k] = estado_atual[k].replace('<', '')
-        estado_atual[k] = estado_atual[k].replace('>','')
+        estado_atual[k] = estado_atual[k].replace('>', '')
     if estado_atual == []:
         continue # pular os \n
     proximo_estado = re.findall('.<[A-Z]>', arq[i])
 
+    apoio = []
     if estado_atual[0] == "S":
         for j in range(len(proximo_estado)):
             proximo_estado[j] = proximo_estado[j].replace('>', '')
             tokens = proximo_estado[j].split('<')
-            
-    #         break
-    # break
+            index = afnd[0].index(tokens[0])
+            if afnd[1][index] != '-':
+                afnd[1][index].append(tokens[1])
+            else:
+                afnd[1].insert(index, [tokens[1]])
+            afnd[1].pop()
 
+    else:
+        for j in range(len(proximo_estado)):
+
+
+#             break
+#     break
+# print_table(afnd)
 
 
 
