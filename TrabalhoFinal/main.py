@@ -61,25 +61,30 @@ for i in range(len(arq)):
         continue # pular os \n
     proximo_estado = re.findall('.<[A-Z]>', arq[i])
 
-    apoio = []
     if estado_atual[0] == "S":
         for j in range(len(proximo_estado)):
             proximo_estado[j] = proximo_estado[j].replace('>', '')
             tokens = proximo_estado[j].split('<')
             index = afnd[0].index(tokens[0])
+            
+            numero = ord(tokens[1])
+            numero-=65
+            if numero != estado_diposnivel:
+                tokens[1] = tfn_26(estado_diposnivel)
+            estado_diposnivel+=1
+
             if afnd[1][index] != '-':
                 afnd[1][index].append(tokens[1])
             else:
                 afnd[1].insert(index, [tokens[1]])
-            afnd[1].pop()
+                afnd[1].pop(index+1)
+            afnd.append([tfn_26(estado_diposnivel-1)])
+            for j in range(numero_estados):
+                afnd[-1].append("-")
 
-    else:
-        for j in range(len(proximo_estado)):
+        
 
-
-#             break
-#     break
-# print_table(afnd)
+print_table(afnd)
 
 
 
