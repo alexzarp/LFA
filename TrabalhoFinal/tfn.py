@@ -7,12 +7,23 @@ def tfn_26(num): # 10 → 26
     numb.append('A')
     while(True):
         if (num > 25):
-            numb[0] = ord(numb[0])
-            numb[0]+=1
-            numb[0] = chr(numb[0])
-            num = num - 26
+            if (num > 701):
+                
+
+            else:
+                if (len(numb) > 1):
+                    numb[-2] = ord(numb[-2])
+                    numb[-2]+=1
+                    numb[-2] = chr(numb[-2])
+                else:
+                    numb[0] = ord(numb[0])
+                    numb[0]+=1
+                    numb[0] = chr(numb[0])
+                num = num - 26
+
         elif (num < 0):
             num = num + 26
+
         else:
             numb.append(chr(num + 65))
             break

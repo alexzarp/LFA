@@ -1,6 +1,17 @@
-se
-entao
-senao
+<S> ::= s<A>
+<A> ::= e
+
+<S> ::= e<A>
+<A> ::= n<B>
+<B> ::= t<C>
+<C> ::= a<D>
+<D> ::= o
+
+<S> ::= s<A>
+<A> ::= e<B>
+<B> ::= n<C>
+<C> ::= a<D>
+<D> ::= o
 
 <S> ::= a<A> | e<A> | i<A> | o<A> | u<A>
 <A> ::= a<A> | e<A> | i<A> | o<A> | u<A> | ε

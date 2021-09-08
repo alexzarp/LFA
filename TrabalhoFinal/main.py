@@ -5,19 +5,14 @@ arq = open("entrada", "r")
 arq = arq.readlines()
 
 epsilon = 'ε'
-afnd = [['δ']]
+estado_diposnivel = 0
+afnd = [['δ'], ['S']]
 afd = []
-
-# numeracao_minuscula = [("A", 0), ("b", 1), ("C", 2), ('d', 2), ('e', 3), ('f', 4), ('g', 5), ('h', 6), ('i', 7), ('j', 8), ('k', 9), ('l', 10), ('m', 11), ('n', 12), ('o', 13), ('p', 14), ('q', 15), ('r', 16), ('s', 17), ('t', 18), ('u', 19), ('v', 20), ('w', 21), ('y', 22), ('k', 23), ('x', 24), ('z', 25)]
-# contatos = dict(numeracao_minuscula)
 
 def print_table(vet):
     for i in range(len(vet)):
         print(vet[i])
-# >>> ord('a')
-# 97
-# >>> chr(97)
-# 'a'
+
 def tfn_26(num): # 10 → 26
     numb = []
     if num <= 25:
@@ -43,8 +38,6 @@ def tfn_26(num): # 10 → 26
         numero = numero + numb[i]
 
     return numero
-        
-            
 
 # encontra e coloca na tabela os tokens [a-z]
 for i in range (len(arq)):
@@ -54,23 +47,26 @@ for i in range (len(arq)):
             continue
         else:
             afnd[0].append(tokens[j])
-# afnd[0].sort()
-# afnd[0].insert(0, afnd[0][-1])
-# afnd[0].pop(-1)
+simbolos = len(afnd[0])
+numero_estados = len(afnd[0]) -1
 
-# encontra e coloca na tabela os tokens <[A-Z]>
-for i in range (len(arq)):
-    tokens = re.findall('<[A-Z]>', arq[i])
-    ep = re.findall(epsilon, arq[i])
-    if tokens != []:
-        if ep != []:
-            afnd.append(['*' + tokens[0]])
-        else:
-            afnd.append([tokens[0]])
+for i in range(len(arq)):
+    estado_atual = re.findall('<[A-Z]>', arq[i])
+    for k in range(len(estado_atual)):
+        estado_atual[k] = estado_atual[k].replace('<', '')
+        estado_atual[k] = estado_atual[k].replace('>','')
+    if estado_atual == []:
+        continue # pular os \n
+    proximo_estado = re.findall('.<[A-Z]>', arq[i])
+
+    if estado_atual[0] == "S":
+        for j in range(len(proximo_estado)):
+            proximo_estado[j] = proximo_estado[j].replace('>', '')
+            tokens = proximo_estado[j].split('<')
+            
+    #         break
+    # break
 
 
-# cont = len(afnd[0]) -1
-# for i in range (len(arq)):
-# print_table(afnd)
-n = int(input("Digite o numero: "))
-print(tfn_26(n))
+
+
