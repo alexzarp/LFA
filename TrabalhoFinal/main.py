@@ -63,67 +63,43 @@ for i in range(len(arq)):
     proximo_estado = re.findall('.<[A-Z]>', arq[i])
     estado_final = re.findall('[a-z]\n|ε', arq[i])
 
-    if estado_atual[0] == "S":
-        for j in range(len(proximo_estado)):
-            proximo_estado[j] = proximo_estado[j].replace('>', '')
-            tokens = proximo_estado[j].split('<')
-            index = afnd[0].index(tokens[0])
-            
-            numero = ord(tokens[1])
-            numero-=65
-            if numero != estado_diposnivel:
-                temp = tokens[1]
+    for j in range(len(proximo_estado)):
+        proximo_estado[j] = proximo_estado[j].replace('>', '')
+        tokens = proximo_estado[j].split('<')
+        index = afnd[0].index(tokens[0])
+        
+        numero = ord(tokens[1])
+        numero-=65
+        if numero != estado_diposnivel:
+            temp = tokens[1]
+            tokens[1] = tfn_26(estado_diposnivel)
+            if tokens[1] == "S":
+                estado_diposnivel+=1
                 tokens[1] = tfn_26(estado_diposnivel)
-                if tokens[1] == "S":
-                    estado_diposnivel+=1
-                    tokens[1] = tfn_26(estado_diposnivel)
-                dicionario[temp] = tokens[1]
-            estado_diposnivel+=1
+            dicionario[temp] = tokens[1]
+        estado_diposnivel+=1
 
+        if estado_atual[0] == "S":
             if afnd[1][index] != '-':
                 afnd[1][index].append(tokens[1])
             else:
                 afnd[1].insert(index, [tokens[1]])
                 afnd[1].pop(index+1)
 
-            if estado_final != []:
-                afnd.append(["*" + tfn_26(estado_diposnivel-1)])
-            else:
-                afnd.append([tfn_26(estado_diposnivel-1)])
-            
-            for j in range(numero_estados):
-                afnd[-1].append("-")
-
-    else:
-        for j in range(len(proximo_estado)):
-            proximo_estado[j] = proximo_estado[j].replace('>', '')
-            tokens = proximo_estado[j].split('<')
-            index = afnd[0].index(tokens[0])
-
-            numero = ord(tokens[1])
-            numero-=65
-            if numero != estado_diposnivel:
-                temp = tokens[1]
-                tokens[1] = tfn_26(estado_diposnivel)
-                if tokens[1] == "S":
-                    estado_diposnivel+=1
-                    tokens[1] = tfn_26(estado_diposnivel)
-                dicionario[temp] = tokens[1]
-            estado_diposnivel+=1
-
+        else:
             if afnd[-1][index] != '-':
                 afnd[-1][index].append(tokens[1])
             else:
                 afnd[-1].insert(index, [tokens[1]])
                 afnd[-1].pop(index+1)
 
-            if estado_final != []:
-                afnd.append(["*" + tfn_26(estado_diposnivel-1)])
-            else:
-                afnd.append([tfn_26(estado_diposnivel-1)])
+        if estado_final != []:
+            afnd.append(["*" + tfn_26(estado_diposnivel-1)])
+        else:
+            afnd.append([tfn_26(estado_diposnivel-1)])
 
-            for j in range(numero_estados):
-                afnd[-1].append("-")
+        for j in range(numero_estados):
+            afnd[-1].append("-")
 
 
 print_table(afnd)
