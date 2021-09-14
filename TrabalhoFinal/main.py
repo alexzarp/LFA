@@ -1,4 +1,3 @@
-from pattern import *
 import re
 
 arq = open("entrada", "r")
@@ -8,6 +7,7 @@ epsilon = 'ε'
 estado_diposnivel = 0
 afnd = [['δ'], ['S']]
 afd = []
+dicionario = {}
 
 def print_table(vet):
     for i in range(len(vet)):
@@ -55,6 +55,7 @@ for j in range(numero_estados):
 for i in range(len(arq)):
     estado_atual = re.findall('<[A-Z]>', arq[i])
     if estado_atual == []: # not estado_atual
+        dicionario = {} # reinicia o dicionário a cada nova gramática
         continue # pular os \n
     for k in range(len(estado_atual)):
         estado_atual[k] = estado_atual[k].replace('<', '')
@@ -71,17 +72,17 @@ for i in range(len(arq)):
             numero = ord(tokens[1])
             numero-=65
             if numero != estado_diposnivel:
+                temp = tokens[1]
                 tokens[1] = tfn_26(estado_diposnivel)
                 if tokens[1] == "S":
                     estado_diposnivel+=1
                     tokens[1] = tfn_26(estado_diposnivel)
+                dicionario[temp] = tokens[1]
             estado_diposnivel+=1
 
             if afnd[1][index] != '-':
                 afnd[1][index].append(tokens[1])
             else:
-                if estado_final != []:
-                    tokens[1] = '*' + tokens[1]
                 afnd[1].insert(index, [tokens[1]])
                 afnd[1].pop(index+1)
 
@@ -102,17 +103,17 @@ for i in range(len(arq)):
             numero = ord(tokens[1])
             numero-=65
             if numero != estado_diposnivel:
+                temp = tokens[1]
                 tokens[1] = tfn_26(estado_diposnivel)
                 if tokens[1] == "S":
                     estado_diposnivel+=1
                     tokens[1] = tfn_26(estado_diposnivel)
+                dicionario[temp] = tokens[1]
             estado_diposnivel+=1
 
             if afnd[-1][index] != '-':
                 afnd[-1][index].append(tokens[1])
             else:
-                if estado_final != []:
-                    tokens[1] = '*' + tokens[1]
                 afnd[-1].insert(index, [tokens[1]])
                 afnd[-1].pop(index+1)
 
@@ -123,7 +124,7 @@ for i in range(len(arq)):
 
             for j in range(numero_estados):
                 afnd[-1].append("-")
-        
+
 
 print_table(afnd)
 
