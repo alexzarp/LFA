@@ -3,7 +3,7 @@ import re
 arq = open("entrada", "r")
 arq = arq.readlines()
 
-epsilon = 'ε'
+# epsilon = 'ε'
 estado_diposnivel = 0
 afnd = [['δ'], ['S']]
 afd = []
@@ -47,7 +47,6 @@ for i in range (len(arq)):
             continue
         else:
             afnd[0].append(tokens[j])
-simbolos = len(afnd[0])
 numero_estados = len(afnd[0]) -1
 for j in range(numero_estados):
     afnd[1].append("-")
@@ -93,15 +92,15 @@ for i in range(len(arq)):
                 afnd[-1].insert(index, [tokens[1]])
                 afnd[-1].pop(index+1)
 
-        if estado_atual[0] in dicionario:
-            continue
+        # if estado_atual[0] in dicionario:
+        #     continue
+        # else:
+        if estado_final != []:
+            afnd.append(["*" + tfn_26(estado_diposnivel-1)])
         else:
-            if estado_final != []:
-                afnd.append(["*" + tfn_26(estado_diposnivel-1)])
-            else:
-                afnd.append([tfn_26(estado_diposnivel-1)])
-            for j in range(numero_estados):
-                afnd[-1].append("-")
+            afnd.append([tfn_26(estado_diposnivel-1)])
+        for j in range(numero_estados):
+            afnd[-1].append("-")
 
 
 print_table(afnd)
