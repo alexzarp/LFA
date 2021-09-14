@@ -93,13 +93,15 @@ for i in range(len(arq)):
                 afnd[-1].insert(index, [tokens[1]])
                 afnd[-1].pop(index+1)
 
-        if estado_final != []:
-            afnd.append(["*" + tfn_26(estado_diposnivel-1)])
+        if estado_atual[0] in dicionario:
+            continue
         else:
-            afnd.append([tfn_26(estado_diposnivel-1)])
-
-        for j in range(numero_estados):
-            afnd[-1].append("-")
+            if estado_final != []:
+                afnd.append(["*" + tfn_26(estado_diposnivel-1)])
+            else:
+                afnd.append([tfn_26(estado_diposnivel-1)])
+            for j in range(numero_estados):
+                afnd[-1].append("-")
 
 
 print_table(afnd)
