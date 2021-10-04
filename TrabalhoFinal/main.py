@@ -104,10 +104,7 @@ for i in range(len(arq)):
         # print_table(afnd)
         # print('\n')
 
-
-print_table(afnd)
-
-
+# print_table(afnd)
 
 afnd = [
     ['δ', 's', 'e', 'n', 't', 'a', 'o', 'i', 'u'],
@@ -126,3 +123,56 @@ afnd = [
     ['*L', '-', '-', '-', '-', '-', '-', '-', '-'],
     ['*M', '-', ['M'], '-', '-', ['M'], ['M'], ['M'], ['M']]
 ]
+
+afd.append(afnd[0])
+for i in range(len(afnd)):
+    if afnd[i][0] == "S":
+        afd.append(['S'])
+        for j in range(len(afnd[i])):
+            if afnd[i][j] != "-":
+                novaPalavra = ''
+                if len(afnd[i][j]) > 1:
+                    novaPalavra = '['
+                    for k in range(len(afnd[i][j])):
+                        novaPalavra = novaPalavra + afnd[i][j][k]
+                    novaPalavra = novaPalavra + ']'
+                    afd.append([novaPalavra])
+                    for o in range(len(afd[0]) -1):
+                        afd[-1].append('-')
+                else:
+                    if afnd[i][j] == 'S':
+                        continue
+                    novaPalavra = novaPalavra + afnd[i][j][0]
+                afd[1].append(novaPalavra)
+            else:
+                afd[1].append('-')
+    else:
+        if i > 1:
+            break
+
+for i in range(len(afnd[1])):
+    if afnd[1][i] == 'S':
+        continue
+    if afnd[1][i] != '-':
+        if len(afnd[1][i]) > 1:
+
+        else:
+            for j in range(len(afnd)):
+                if afnd[j][0] == afnd[1][i][0]
+                    afd.append(afnd[j])
+
+                    for k in range(len(afd[j])):
+                        if afnd[j][k] == afnd[1][i][0]:
+                            continue
+                        else:
+
+
+                    break
+    else:
+        continue
+
+
+print_table(afd)
+
+
+
