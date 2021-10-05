@@ -9,6 +9,17 @@ afnd = [['δ'], ['S']]
 afd = []
 dicionario = {}
 
+def generate_csv(afd):
+    arq = open('afd.csv', 'w')
+
+    for i in range(len(afd)):
+        for j in range(len(afd[i])):
+            arq.write(afd[i][j])
+            arq.write(',')
+        arq.write('\n')
+    
+    arq.close()
+
 def print_table(vet):
     for i in range(len(vet)):
         print(vet[i])
@@ -150,29 +161,30 @@ for i in range(len(afnd)):
         if i > 1:
             break
 
-for i in range(len(afnd[1])):
-    if afnd[1][i] == 'S':
-        continue
-    if afnd[1][i] != '-':
-        if len(afnd[1][i]) > 1:
+# for i in range(len(afnd[1])):
+#     if afnd[1][i] == 'S':
+#         continue
+#     if afnd[1][i] != '-':
+#         if len(afnd[1][i]) > 1:
 
-        else:
-            for j in range(len(afnd)):
-                if afnd[j][0] == afnd[1][i][0]
-                    afd.append(afnd[j])
+#         else:
+#             for j in range(len(afnd)):
+#                 if afnd[j][0] == afnd[1][i][0]
+#                     afd.append(afnd[j])
 
-                    for k in range(len(afd[j])):
-                        if afnd[j][k] == afnd[1][i][0]:
-                            continue
-                        else:
-
-
-                    break
-    else:
-        continue
+#                     for k in range(len(afd[j])):
+#                         if afnd[j][k] == afnd[1][i][0]:
+#                             continue
+#                         else:
 
 
-print_table(afd)
+#                     break
+#     else:
+#         continue
+
+
+# print_table(afd)
+generate_csv(afd)
 
 
 
