@@ -115,7 +115,8 @@ for i in range(len(arq)):
         # print_table(afnd)
         # print('\n')
 
-# print_table(afnd)
+print_table(afnd)
+print('\n')
 
 afnd = [
     ['δ', 's', 'e', 'n', 't', 'a', 'o', 'i', 'u'],
@@ -164,8 +165,8 @@ for i in range(len(afnd)):
 
 
 
-# print_table(afd)
-# generate_csv(afd)
+print_table(afd)
+generate_csv(afd)
 
 
 
